@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { v4 as uuidV4 } from 'uuid';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { contacts } from './contacts';
+import { Card } from './card';
 
+export function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1 className='heading'>My Contacts</h1>
+
+      {contacts.map((contact) => (
+        <Card
+          key={uuidV4()}
+          id={uuidV4()}
+          name={contact.name}
+          phone={contact.phone}
+          email={contact.email}
+          imageUrl={contact.imgURL}
+        />
+      ))}
+    </div>
+  );
 }
 
-export default App
+{
+  /* <div>
+<h1 className="heading">My Contacts</h1>
+<div className="card">
+  <div className="top">
+    <h2>Beyonce</h2>
+    <img
+      src="https://blackhistorywall.files.wordpress.com/2010/02/picture-device-independent-bitmap-119.jpg"
+      alt="avatar_img"
+    />
+  </div>
+  <div className="bottom">
+    <p>+123 456 789</p>
+    <p>b@beyonce.com</p>
+  </div>
+</div>
+</div> */
+}
